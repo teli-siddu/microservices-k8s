@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  productservice.api:
+    container_name: productservice.api
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ASPNETCORE_HTTPS_PORTS: "8081"
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__ProductDb: Server=mssqldb;Database=product_db;User Id=sa;Password=Password@123;Encrypt=False;TrustServerCertificate=True
+    ports:
+      - "6000:8080"
+      - "6060:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+      - mssqldb
+
+  mssqldb:
+    container_name: mssqldb-container
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+    environment:
+      SA_PASSWORD: "Password@123"  # Update to a strong password
+      ACCEPT_EULA: "Y"
+    restart: always
+
+  ocelotapigateway:
+    container_name: ocelotapigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - "5004:8080"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+volumes:
+  mssql_data:
+
+

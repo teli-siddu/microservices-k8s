@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  productservice.api:
+    image: ${DOCKER_REGISTRY-}productserviceapi
+    build:
+      context: .
+      dockerfile: Services/ProductService/ProductService.Api/Dockerfile
+  mssqldb:
+    image: mcr.microsoft.com/mssql/server
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: Gateways/ApiGateway/Dockerfile
+
+  ocelotapigateway:
+    image: ${DOCKER_REGISTRY-}ocelotapigateway
+    build:
+      context: .
+      dockerfile: Gateways/OcelotApiGateway/Dockerfile
+
+volumes:
+  mssql_data:
+  
+  
+
+
+
+
