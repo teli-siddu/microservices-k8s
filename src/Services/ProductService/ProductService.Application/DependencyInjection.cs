@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BuildingBlocks.Behaviours;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using ProductService.Application.Mappers;
 using System;
 using System.Collections.Generic;
@@ -16,8 +19,10 @@ namespace ProductService.Application
             services.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+                config.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+                config.AddOpenBehavior(typeof(LoggingBehaviour<,>));
             });
-
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(typeof(ProductMappingProfile));
             return services;
         }

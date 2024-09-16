@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BuildingBlocks.AzureServiceBus;
+using FluentValidation;
 using MediatR;
 using ProductService.Domain.Interfaces;
 using ProductService.Domain.Models;
@@ -7,6 +8,7 @@ using System.Text.Json;
 
 namespace ProductService.Application.Commands.Handlers
 {
+
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
     {
         private readonly IProductRepository _productRepository;
@@ -21,7 +23,7 @@ namespace ProductService.Application.Commands.Handlers
         }
         public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var productEntity = _mapper.Map<Product>(request.ProductDto);
+            var productEntity = _mapper.Map<Product>(request.Product);
             var result=await _productRepository.CreateProductAsync(productEntity);
             await _serviceBusClient.SendMessageAsync("dev-employees", JsonSerializer.Serialize(productEntity), false);
             return result;

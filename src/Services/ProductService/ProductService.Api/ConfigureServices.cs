@@ -1,9 +1,7 @@
 ﻿using Asp.Versioning;
 using BuildingBlocks.AzureServiceBus;
+using BuildingBlocks.Exceptions;
 using Microsoft.EntityFrameworkCore;
-using ProductService.Domain.Interfaces;
-using ProductService.Infrastructure.Persistance;
-using ProductService.Infrastructure.Repositories;
 
 namespace ProductService.Api
 {
@@ -22,7 +20,7 @@ namespace ProductService.Api
                                  new HeaderApiVersionReader("X-Version"),
                                  new MediaTypeApiVersionReader("X-Version")
                                  );
-                                 }).AddMvc(options => { })
+            }).AddMvc(options => { })
                                 .AddApiExplorer(options =>
                                 {
                                     options.GroupNameFormat = "'v'VVV";
@@ -32,6 +30,12 @@ namespace ProductService.Api
 
             services.AddSingleton<IServiceBusClientProvider>(sp =>
                 new ServiceBusClientProvider(configuration.GetConnectionString("AzureServiceBus")));
+
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
+            services.ConfigureOptions<ConfigureSwaggerOptions>();
+            services.AddExceptionHandler<CustomExceptionHandler>();
+
             return services;
         }
     }

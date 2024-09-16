@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductService.Application.Commands;
 using ProductService.Application.Queries;
+using ProductService.Shared.DTOs;
 
 namespace ProductService.Api.Controllers.V1
 {
@@ -19,16 +20,15 @@ namespace ProductService.Api.Controllers.V1
             _mediator = mediator;
         }
         [HttpGet]
-        [MapToApiVersion("1.0")]
         public async Task<IActionResult> Get()
         {
             var products = await _mediator.Send(new GetProductsQuery());
             return Ok(products);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateProductCommand(CreateProductCommand command)
+        public async Task<IActionResult> CreateProductCommand(ProductDto product)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(new CreateProductCommand(product));
             return Ok(result);
         }
         [HttpPatch]

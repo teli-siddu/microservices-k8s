@@ -1,5 +1,6 @@
 
 using Asp.Versioning.ApiExplorer;
+using BuildingBlocks.Exceptions;
 using Microsoft.Extensions.Hosting;
 using ProductService.Api;
 using ProductService.Api.Extensions;
@@ -12,13 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddApiServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
-
 var app = builder.Build();
-
+app.UseExceptionHandler(options => { });
 ILogger logger = app.Logger;
 if (app.Environment.IsDevelopment()) 
 {
