@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductService.Infrastructure.Persistance;
-using ProductService.Infrastructure.Seeding;
 
 namespace ProductService.Api.Extensions
 {
@@ -10,7 +9,7 @@ namespace ProductService.Api.Extensions
         {
             using var scope = app.Services.CreateScope();
 
-            var context = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
+            var context = scope.ServiceProvider.GetRequiredService<EShopDbContext>();
 
             context.Database.MigrateAsync().GetAwaiter().GetResult();
 

@@ -1,6 +1,8 @@
-﻿using MediatR;
-using ProductService.Domain.Interfaces;
-using ProductService.Shared.DTOs;
+﻿using BuildingBlocks.Query;
+using MediatR;
+using ProductService.Application.DTOs;
+using ProductService.Application.Interfaces.Repositories;
+using ProductService.Application.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace ProductService.Application.Queries.Handlers
 {
-    public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<ProductDto>>
+    public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, PaginatedList<ProductDto>>
     {
-        private readonly IProductRepository _productRepository;
+        private readonly ProductsService _productService;
 
-        public GetProductsQueryHandler(IProductRepository productRepository)
+        public GetProductsQueryHandler(ProductsService productService)
         {
-            _productRepository = productRepository;
+            _productService = productService;
         }
-        public async Task<IEnumerable<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedList<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-           return await  _productRepository.GetProductsAsync();
+           return await _productService.GetProductsAsync(request.QueryParameters);
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using MediatR;
-using ProductService.Shared.DTOs;
+﻿using BuildingBlocks.Query;
+using BuildingBlocks.Requests;
+using MediatR;
+using ProductService.Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,5 +10,5 @@ using System.Threading.Tasks;
 
 namespace ProductService.Application.Queries
 {
-    public record GetProductsQuery:IRequest<IEnumerable<ProductDto>>;
+    public record GetProductsQuery(QueryParameters QueryParameters) :IRequest<PaginatedList<ProductDto>>;
 }

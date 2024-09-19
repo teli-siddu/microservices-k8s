@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using ProductService.Application.DTOs;
 using ProductService.Domain.Models;
-using ProductService.Shared.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

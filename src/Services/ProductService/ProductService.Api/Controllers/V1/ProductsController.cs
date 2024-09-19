@@ -1,10 +1,12 @@
 ﻿using Asp.Versioning;
+using BuildingBlocks.Query;
+using BuildingBlocks.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductService.Application.Commands;
+using ProductService.Application.DTOs;
 using ProductService.Application.Queries;
-using ProductService.Shared.DTOs;
 
 namespace ProductService.Api.Controllers.V1
 {
@@ -20,9 +22,9 @@ namespace ProductService.Api.Controllers.V1
             _mediator = mediator;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery]QueryParameters QueryParameters)
         {
-            var products = await _mediator.Send(new GetProductsQuery());
+            var products = await _mediator.Send(new GetProductsQuery(QueryParameters));
             return Ok(products);
         }
         [HttpPost]

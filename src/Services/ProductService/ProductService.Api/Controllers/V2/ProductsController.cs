@@ -1,4 +1,6 @@
 ﻿using Asp.Versioning;
+using BuildingBlocks.Query;
+using BuildingBlocks.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +22,9 @@ namespace ProductService.Api.Controllers.V2
         }
         [HttpGet]
         [MapToApiVersion("2.0")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([AsParameters] QueryParameters QueryParameters)
         {
-            var products = await _mediator.Send(new GetProductsQuery());
+            var products = await _mediator.Send(new GetProductsQuery(QueryParameters));
             return Ok(products);
         }
         [HttpPost]

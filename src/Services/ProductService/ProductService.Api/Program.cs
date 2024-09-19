@@ -30,6 +30,7 @@ if (app.Environment.IsDevelopment())
     });
     try
     {
+
         await app.InitialiseDatabaseAsync();
     }
     catch(Exception ex)

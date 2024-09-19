@@ -29,7 +29,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks", "BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj", "{4CE92161-ED81-438F-AB08-ED91106F8376}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeesFunction", "AzureFunctions\EmployeesFunction\EmployeesFunction.csproj", "{958DE843-041F-426A-A057-F325C0743AE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeesFunction", "AzureFunctions\EmployeesFunction\EmployeesFunction.csproj", "{958DE843-041F-426A-A057-F325C0743AE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CartService", "CartService", "{A3D395CB-5DA1-4984-9C6E-84296398B789}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartService.Api", "Services\CartService\CartService.API\CartService.Api.csproj", "{5F41D4E0-11AA-4731-9823-A7866A65D7F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartService.Application", "Services\CartService\CartService.Application\CartService.Application.csproj", "{5FFA5107-BE61-49CF-ACF7-3BBB9824ACD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartService.Domain", "Services\CartService\CartService.Domain\CartService.Domain.csproj", "{2B674108-3B27-4C6E-8B7C-624A1EB285D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartService.Infrastructure", "Services\CartService\CartService.Infrastructure\CartService.Infrastructure.csproj", "{899BDAE8-B49F-4030-94C3-C444B309A71F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +83,22 @@ Global
 		{958DE843-041F-426A-A057-F325C0743AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{958DE843-041F-426A-A057-F325C0743AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{958DE843-041F-426A-A057-F325C0743AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F41D4E0-11AA-4731-9823-A7866A65D7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F41D4E0-11AA-4731-9823-A7866A65D7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F41D4E0-11AA-4731-9823-A7866A65D7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F41D4E0-11AA-4731-9823-A7866A65D7F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FFA5107-BE61-49CF-ACF7-3BBB9824ACD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FFA5107-BE61-49CF-ACF7-3BBB9824ACD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FFA5107-BE61-49CF-ACF7-3BBB9824ACD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FFA5107-BE61-49CF-ACF7-3BBB9824ACD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B674108-3B27-4C6E-8B7C-624A1EB285D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B674108-3B27-4C6E-8B7C-624A1EB285D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B674108-3B27-4C6E-8B7C-624A1EB285D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B674108-3B27-4C6E-8B7C-624A1EB285D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{899BDAE8-B49F-4030-94C3-C444B309A71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{899BDAE8-B49F-4030-94C3-C444B309A71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{899BDAE8-B49F-4030-94C3-C444B309A71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{899BDAE8-B49F-4030-94C3-C444B309A71F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +113,11 @@ Global
 		{47E0F6AD-DFE1-4D61-9023-DDC2E49CDF79} = {951CC25D-005A-4C90-B2EC-39873D52B74C}
 		{4CE92161-ED81-438F-AB08-ED91106F8376} = {C222C4B1-9B18-443A-80E7-6DDD9F12BF5A}
 		{958DE843-041F-426A-A057-F325C0743AE0} = {7C389E0F-2623-420E-875C-51870D40C599}
+		{A3D395CB-5DA1-4984-9C6E-84296398B789} = {59DD32E3-25B9-45EA-98E1-41DEFE57CF70}
+		{5F41D4E0-11AA-4731-9823-A7866A65D7F4} = {A3D395CB-5DA1-4984-9C6E-84296398B789}
+		{5FFA5107-BE61-49CF-ACF7-3BBB9824ACD1} = {A3D395CB-5DA1-4984-9C6E-84296398B789}
+		{2B674108-3B27-4C6E-8B7C-624A1EB285D6} = {A3D395CB-5DA1-4984-9C6E-84296398B789}
+		{899BDAE8-B49F-4030-94C3-C444B309A71F} = {A3D395CB-5DA1-4984-9C6E-84296398B789}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {400A6AE8-E3E1-411B-A22B-A89475B55F1C}

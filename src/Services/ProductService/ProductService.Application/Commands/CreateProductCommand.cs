@@ -1,9 +1,9 @@
 ﻿
 using MediatR;
-using ProductService.Shared.DTOs;
+using ProductService.Application.DTOs;
 
 namespace ProductService.Application.Commands
 {
-    public record CreateProductCommand(ProductDto Product):IRequest<Guid>;
+    public record CreateProductCommand(ProductDto Product):IRequest<int>;
 
 }

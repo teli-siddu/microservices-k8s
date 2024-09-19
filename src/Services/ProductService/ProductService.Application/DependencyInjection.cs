@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using ProductService.Application.Interfaces.Services;
 using ProductService.Application.Mappers;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace ProductService.Application
 {
     public static class DependencyInjection
@@ -24,6 +24,7 @@ namespace ProductService.Application
             });
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(typeof(ProductMappingProfile));
+            services.AddScoped(typeof(ProductsService));
             return services;
         }
     }
